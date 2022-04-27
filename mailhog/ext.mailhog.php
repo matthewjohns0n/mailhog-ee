@@ -18,13 +18,13 @@ class Mailhog_ext
     {
         $data = [
             [
-                'class'     => __CLASS__,
-                'method'    => 'email_send',
-                'hook'      => 'email_send',
-                'settings'  => serialize($this->settings),
-                'priority'  => 10,
-                'version'   => $this->version,
-                'enabled'   => 'y'
+                'class'    => __CLASS__,
+                'method'   => 'email_send',
+                'hook'     => 'email_send',
+                'settings' => serialize($this->settings),
+                'priority' => 10,
+                'version'  => $this->version,
+                'enabled'  => 'y'
             ],
 
         ];
@@ -78,18 +78,18 @@ class Mailhog_ext
             ee()->config->set_item('mail_protocol', 'smtp');
             ee()->config->set_item('smtp_server', '127.0.0.1');
             ee()->config->set_item('smtp_port', '1025');
-            ee()->config->set_item('smtp_username', 'user');
-            ee()->config->set_item('smtp_password', 'pass');
             ee()->config->set_item('email_smtp_crypto', '');
+            ee()->config->set_item('newline', "\r\n");
+            ee()->config->set_item('crlf', "\r\n");
 
             // Set email settings needed for mailhog on the email object
             ee()->email->protocol = "smtp";
             ee()->email->charset = "utf-8";
             ee()->email->smtp_host = "127.0.0.1";
-            ee()->email->smtp_port = "1025";
-            ee()->email->smtp_user = "user";
-            ee()->email->smtp_pass = "pass";
+            ee()->email->smtp_port = '1025';
             ee()->email->smtp_crypto = "";
+            ee()->email->newline = "\r\n";
+            ee()->email->crlf = "\r\n";
         }
     }
 }
